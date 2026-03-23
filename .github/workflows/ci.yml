@@ -29,13 +29,14 @@ jobs:
 
       - name: Build Firmware (ESP32-CAM AI-Thinker)
         run: pio run -e esp32cam
+        working-directory: camera
  
       # Salvăm firmware.bin ca artifact descărcabil
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
         with:
           name: firmware-esp32cam
-          path: .pio/build/esp32cam/firmware.bin
+          path: camera/.pio/build/esp32cam/firmware.bin
  
   # =============================================
   # Job 2: Analiza statică C++ (Firmware)
@@ -63,6 +64,7 @@ jobs:
                    --suppress=cstyleCast \
                    --error-exitcode=1 \
                    src/
+        working-directory: camera
 
   # =============================================
   # Job 3: Verificarea codului Python (Receiver)
@@ -89,6 +91,8 @@ jobs:
       - name: Lint with Pylint
         # || true = soft-fail, pipeline-ul nu eșuează pe warning-uri pylint
         run: pylint --disable=C0114,C0115,C0116,C0103 receiver.py || true
+        working-directory: receiver
 
       - name: Security scan with Bandit
         run: bandit receiver.py -ll
+        working-directory: receiver
