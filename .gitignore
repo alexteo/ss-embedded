@@ -1,5 +1,15 @@
+# PlatformIO
+.pio/
+
+# Python
 .venv/
 __pycache__/
-.pio/
+*.pyc
+
+# IDE
 .vscode/
+.idea/
+
+# OS
 .DS_Store
+Thumbs.db
