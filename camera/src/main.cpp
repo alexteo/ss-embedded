@@ -19,7 +19,7 @@ const int mqtt_port = 1883;
  
 // Topics
 const char* TOPIC_COMMAND = "ssproject/commands";
-const char* TOPIC_IMAGE   = "ssproject/images";
+const char* TOPIC_IMAGE   = "ssproject/images"
  
 WiFiClient espClient;
 PubSubClient client(espClient);
